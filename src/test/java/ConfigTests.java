@@ -3,8 +3,8 @@ import org.testng.annotations.*;
 
 import static com.codeborne.selenide.Configuration.*;
 
-
 @Listeners({ScreenShooter.class})
+@Test(groups = {"ConfigGroup"})
 public class ConfigTests {
 
     @BeforeSuite

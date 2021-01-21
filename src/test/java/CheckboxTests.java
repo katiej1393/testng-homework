@@ -5,15 +5,9 @@ import org.testng.asserts.SoftAssert;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
-//@Test(singleThreaded = true)
-//@Listeners({ScreenShooter.class})
 public class CheckboxTests extends ConfigTests {
 
     SoftAssert softAssert = new SoftAssert();
-
-//    @BeforeTest    public void testSetUp(){
-//        reportsFolder="CheckboxFailedTests";
-//    }
 
     @BeforeMethod
     public void methodSetup() {
@@ -26,7 +20,7 @@ public class CheckboxTests extends ConfigTests {
         Selenide.closeWebDriver();
     }
 
-    @Test
+    @Test(groups = {"FrontEnd"})
     public void uncheckCheckedCheckboxes() {
         $$("input[type='checkbox']").stream().filter(el->el.isSelected())
                 .forEach(el->el.setSelected(false));
@@ -34,11 +28,10 @@ public class CheckboxTests extends ConfigTests {
         softAssert.assertAll();
     }
 
-    @Test(dependsOnMethods = {"uncheckCheckedCheckboxes"},alwaysRun = true)
+    @Test(dependsOnMethods = {"uncheckCheckedCheckboxes"},alwaysRun = true, groups = {"BackEnd"})
     public void checkUncheckedCheckbox() {
         $$("input[type='checkbox']").forEach(el->{if(!el.isSelected()) el.setSelected(true);});
         softAssert.fail("invoking fail");
         softAssert.assertAll();
     }
-
 }

@@ -4,16 +4,9 @@ import org.testng.asserts.SoftAssert;
 
 import static com.codeborne.selenide.Selenide.*;
 
-//@Test(singleThreaded = true)
-//@Listeners({ScreenShooter.class})
 public class RadioButtonTests extends ConfigTests{
 
     SoftAssert softAssert = new SoftAssert();
-
-//    @BeforeTest
-//    public void testSetUp(){
-//        reportsFolder="RadioButtonFailedTests";
-//    }
 
     @BeforeMethod
     public void testSetup() {
@@ -26,14 +19,14 @@ public class RadioButtonTests extends ConfigTests{
         Selenide.closeWebDriver();
     }
 
-    @Test
+    @Test(groups = {"FrontEnd"})
     public void selectYes() {
         $x("//label[text()='Yes']").click();
-        softAssert.fail("invoking fail");
-        softAssert.assertAll();
+            softAssert.fail("invoking fail");
+            softAssert.assertAll();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1,groups = {"BackEnd"})
     public void isOptionNoAvailable() {
         softAssert.assertFalse($x("//label[text()='No']").isEnabled());
         softAssert.assertAll();
