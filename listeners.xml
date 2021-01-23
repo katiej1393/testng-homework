@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="ListenersHomework" parallel="classes" thread-count = "10">
+    <listeners>
+        <listener class-name="MyAnnotationTransformer"/>
+    </listeners>
+    <test name="TestNgExecutionHomework" >
+        <classes>
+            <class name="FourMethodsWithDifferentResults"/>
+        </classes>
+    </test>
+</suite>
